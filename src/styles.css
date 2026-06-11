@@ -1,0 +1,417 @@
+:root {
+  --night: #0b0e1a;
+  --night-2: #131a33;
+  --blood-sky: #1d0f14;
+  --line: #232a45;
+  --text: #e7e3d4;
+  --dim: #8b87a0;
+  --gold: #f2b33d;
+  --ember: #e8742c;
+  --blood: #b3402e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--night);
+}
+
+body {
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: max(20px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+  background: radial-gradient(ellipse 130% 70% at 50% 30%, var(--night-2) 0%, var(--night) 65%);
+  transition: background 2s ease;
+  overflow: hidden;
+}
+
+.app.is-critical {
+  background: radial-gradient(ellipse 130% 70% at 50% 30%, var(--blood-sky) 0%, var(--night) 65%);
+}
+
+.app.is-night {
+  background: radial-gradient(ellipse 130% 70% at 50% 30%, #07080f 0%, #030308 65%);
+}
+
+.loading-screen {
+  justify-content: center;
+  color: var(--dim);
+  font-style: italic;
+  font-size: 18px;
+}
+
+/* ---- header ---- */
+.header {
+  text-align: center;
+  animation: fadein 0.8s ease both;
+}
+
+.eyebrow {
+  letter-spacing: 0.45em;
+  font-size: 11px;
+  color: var(--dim);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 8px 0 0;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--dim);
+  margin-top: 4px;
+}
+
+/* ---- scene ---- */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.sun-scene {
+  max-width: min(92vw, 360px);
+  height: auto;
+  margin-top: 4px;
+}
+
+.star {
+  animation: twinkle 3.5s ease-in-out infinite;
+}
+
+.sun-rays {
+  animation: spin 90s linear infinite;
+}
+
+.sun-body {
+  transition: transform 0.25s ease;
+}
+
+.sun-body.guttering {
+  animation: gutter 1.2s ease-in-out infinite;
+}
+
+/* ---- countdown ---- */
+.countdown {
+  text-align: center;
+  margin-top: -6px;
+}
+
+.countdown-time {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 36px;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-time.is-critical {
+  color: #ff8a6b;
+}
+
+.countdown-sub {
+  font-size: 14px;
+  color: var(--dim);
+  margin-top: 2px;
+}
+
+.countdown-sub.is-critical {
+  color: #d4654a;
+}
+
+/* ---- ritual ---- */
+.ritual {
+  margin-top: 20px;
+  text-align: center;
+  min-height: 122px;
+}
+
+.result {
+  margin-bottom: 12px;
+  font-size: 15px;
+  animation: fadein 0.5s ease both;
+}
+
+.result-perfect {
+  color: var(--gold);
+}
+
+.result-fizzled {
+  color: var(--dim);
+}
+
+.din-btn {
+  touch-action: none;
+  background: linear-gradient(to bottom, #1d2440, #141a30);
+  border: 1px solid #e8742c66;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 17px 44px;
+  font-size: 17px;
+  font-weight: 700;
+  font-family: inherit;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.din-btn:active {
+  transform: scale(0.985);
+}
+
+.din-btn.in-gold {
+  border-color: var(--gold);
+}
+
+.hint {
+  font-size: 12.5px;
+  color: var(--dim);
+  margin-top: 10px;
+}
+
+.cooldown {
+  font-size: 15px;
+  color: var(--dim);
+  padding: 8px 24px;
+  line-height: 1.6;
+}
+
+.mono {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  color: var(--text);
+}
+
+/* ---- log ---- */
+.noise-log {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--dim);
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* ---- long night ---- */
+.long-night {
+  text-align: center;
+  margin-top: 48px;
+  padding: 0 24px;
+  max-width: 440px;
+  animation: fadein 1.4s ease both;
+  position: relative;
+}
+
+.pack {
+  position: relative;
+  width: 100%;
+  height: 110px;
+}
+
+.pack-eyes {
+  position: absolute;
+  display: flex;
+  gap: 9px;
+  animation: blink 5s ease-in-out infinite;
+}
+
+.pack-eyes i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff3b30;
+  box-shadow: 0 0 8px #ff3b30aa;
+}
+
+.night-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 18px 0 0;
+}
+
+.night-body {
+  font-size: 15px;
+  color: var(--dim);
+  margin-top: 12px;
+  line-height: 1.65;
+}
+
+.forge-btn {
+  margin-top: 28px;
+  background: transparent;
+  border: 1px solid #e8742c88;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 15px 36px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+}
+
+.forge-btn:active {
+  transform: scale(0.985);
+}
+
+/* ---- share / stats ---- */
+.share {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.share-btn {
+  background: transparent;
+  border: none;
+  color: var(--dim);
+  font-size: 14px;
+  font-family: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.share-msg {
+  font-size: 13px;
+  color: var(--gold);
+  margin-top: 6px;
+  max-width: 320px;
+}
+
+.me-stats {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--dim);
+  text-align: center;
+}
+
+/* ---- graveyard ---- */
+.graveyard {
+  margin-top: 34px;
+  text-align: center;
+  width: 100%;
+  max-width: 380px;
+}
+
+.graveyard .eyebrow {
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+
+.grave-row {
+  font-size: 13.5px;
+  color: var(--dim);
+  padding: 6px 0;
+  border-top: 1px solid var(--line);
+}
+
+/* ---- footer ---- */
+.footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.mute-btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--dim);
+  font-size: 12.5px;
+  font-family: inherit;
+  padding: 7px 16px;
+  cursor: pointer;
+}
+
+.legend {
+  font-size: 12px;
+  color: #5d5a72;
+  font-style: italic;
+  line-height: 1.6;
+  margin-top: 16px;
+  max-width: 340px;
+}
+
+/* ---- animations ---- */
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gutter {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.96) rotate(0.5deg);
+  }
+  45% {
+    transform: scale(1.02) rotate(-0.6deg);
+  }
+  70% {
+    transform: scale(0.97);
+  }
+}
+
+@keyframes blink {
+  0%,
+  91%,
+  100% {
+    opacity: 1;
+  }
+  94%,
+  97% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star,
+  .sun-rays,
+  .sun-body.guttering,
+  .pack-eyes {
+    animation: none !important;
+  }
+}
