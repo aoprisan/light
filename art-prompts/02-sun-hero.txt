@@ -1,0 +1,15 @@
+LAST LIGHT — ART PROMPT 2: THE SUN (HERO DISC)
+Self-contained — copy everything below into Gemini 2.5 Flash Image ("Nano Banana").
+Tip: generate this one FIRST, then feed the best result back as a reference image into prompts 1, 3 and 6 so the same sun recurs.
+
+=== STANDARD ===
+
+STYLE: Eastern-European folk-horror woodcut meets modern game UI. Romanian vârcolaci legend (wolves devouring the sun). Mood: tense, sacred, nocturnal, hand-made. Limited palette ONLY — deep midnight indigo (#07090f, #0e1426), ember orange (#ea7a2e), molten gold (#f4be4f, #ffe6a0), blood red (#c0432e), bone/parchment (#efeada). Subtle film grain and a soft vignette. Textured, slightly engraved linework; no glossy 3D, no lens flare clutter, no text unless asked. High contrast between the warm sun and the cold dark.
+
+A close-up of a dying-but-defiant sun against deep midnight indigo, 1:1. The disc is a living surface of molten ember and gold, churning like cooling lava, with a brilliant near-white core and darker ember-orange edges. A ragged corona of gold light-spikes radiates outward. Faint orange sparks lift off the top like campfire embers. Reverent, sacred, hand-illustrated. No wolf, no text.
+
+=== CRITICAL / LOW-LIGHT STATE ===
+
+STYLE: Eastern-European folk-horror woodcut meets modern game UI. Romanian vârcolaci legend (wolves devouring the sun). Mood: tense, sacred, nocturnal, hand-made. Limited palette ONLY — deep midnight indigo (#07090f, #0e1426), ember orange (#ea7a2e), molten gold (#f4be4f, #ffe6a0), blood red (#c0432e), bone/parchment (#efeada). Subtle film grain and a soft vignette. Textured, slightly engraved linework; no glossy 3D, no lens flare clutter, no text unless asked. High contrast between the warm sun and the cold dark.
+
+A close-up of a dying-but-defiant sun against deep midnight indigo, 1:1. The disc is a living surface of molten ember and gold, churning like cooling lava, with a brilliant near-white core and darker ember-orange edges. A ragged corona of gold light-spikes radiates outward. Faint orange sparks lift off the top like campfire embers. Reverent, sacred, hand-illustrated. No wolf, no text. The sun is guttering and dim, half its glow gone, the surrounding sky bleeding to dark crimson (#1f0d12), embers sparse and fading. It looks like it is about to be eaten.

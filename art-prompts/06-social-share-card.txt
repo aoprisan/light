@@ -1,0 +1,13 @@
+LAST LIGHT — ART PROMPT 6: SOCIAL / SHARE CARD (Open Graph, 1.91:1)
+Self-contained — copy everything below into Gemini 2.5 Flash Image ("Nano Banana").
+Two turns: generate the image first, then add the text in a SECOND edit turn.
+
+=== TURN 1 — THE IMAGE ===
+
+STYLE: Eastern-European folk-horror woodcut meets modern game UI. Romanian vârcolaci legend (wolves devouring the sun). Mood: tense, sacred, nocturnal, hand-made. Limited palette ONLY — deep midnight indigo (#07090f, #0e1426), ember orange (#ea7a2e), molten gold (#f4be4f, #ffe6a0), blood red (#c0432e), bone/parchment (#efeada). Subtle film grain and a soft vignette. Textured, slightly engraved linework; no glossy 3D, no lens flare clutter, no text unless asked. High contrast between the warm sun and the cold dark.
+
+A landscape 1.91:1 social share image. Left two-thirds: the ember-gold sun being bitten by a black wolf-head silhouette with red eyes (the eclipse bite), molten corona, sparks rising. Right third: clean negative space of deep indigo for overlaid text. Dramatic, mythic, high contrast. Leave the right side uncluttered.
+
+=== TURN 2 — ADD THE TEXT (follow-up edit on the result of Turn 1) ===
+
+Add elegant engraved serif text on the right third, bone-white (#efeada): title "LAST LIGHT" large, and below it smaller "The vârcolaci are eating the sun. Make noise." Keep the spelling exactly. Don't cover the sun.

@@ -1,0 +1,12 @@
+LAST LIGHT — ART PROMPT 7: TEXTURE & UI OVERLAYS
+Self-contained — copy whichever block you need into Gemini 2.5 Flash Image ("Nano Banana").
+
+=== FILM-GRAIN / PARCHMENT OVERLAY (multiply over the whole app) ===
+
+A seamless, tileable grain texture: fine charcoal-and-soot noise over a near-black field, like an old printed woodcut page. Subtle, monochrome, no pattern or repetition seams, no color. 1:1.
+
+=== GOLDEN RITUAL ARC / BUTTON GLOW ACCENT ===
+
+STYLE: Eastern-European folk-horror woodcut meets modern game UI. Romanian vârcolaci legend (wolves devouring the sun). Mood: tense, sacred, nocturnal, hand-made. Limited palette ONLY — deep midnight indigo (#07090f, #0e1426), ember orange (#ea7a2e), molten gold (#f4be4f, #ffe6a0), blood red (#c0432e), bone/parchment (#efeada). Subtle film grain and a soft vignette. Textured, slightly engraved linework; no glossy 3D, no lens flare clutter, no text unless asked. High contrast between the warm sun and the cold dark.
+
+A thin glowing arc of molten gold light on a flat #07090f background, like a ring of fire being charged, slight bloom and ember sparks along it. 1:1. No text.

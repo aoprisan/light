@@ -1,0 +1,6 @@
+LAST LIGHT — ART PROMPT 3: THE VÂRCOLAC (WOLF OF SHADOW)
+Self-contained — copy everything below into Gemini 2.5 Flash Image ("Nano Banana").
+
+STYLE: Eastern-European folk-horror woodcut meets modern game UI. Romanian vârcolaci legend (wolves devouring the sun). Mood: tense, sacred, nocturnal, hand-made. Limited palette ONLY — deep midnight indigo (#07090f, #0e1426), ember orange (#ea7a2e), molten gold (#f4be4f, #ffe6a0), blood red (#c0432e), bone/parchment (#efeada). Subtle film grain and a soft vignette. Textured, slightly engraved linework; no glossy 3D, no lens flare clutter, no text unless asked. High contrast between the warm sun and the cold dark.
+
+A monstrous wolf's head made of living shadow and smoke, in profile, lunging left with its jaws opening — the vârcolac of Romanian legend that devours the sun. Body is near-black indigo (#07090f) with a faint cold-blue rim light. Two burning red eyes (#c0432e glowing to bright red) and a ring of bone-white fangs catching warm ember light along the open maw. Wisps of shadow trail off its fur. Menacing, mythic, woodcut-textured. Transparent-feeling flat #07090f background, 1:1. No text.
