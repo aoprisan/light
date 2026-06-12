@@ -6,6 +6,7 @@ interface Props {
   critical: boolean;
   holding: boolean;
   charge: number;
+  momentum: number; // 1 = calm village, up to ~1.5 when roaring
 }
 
 const W = 340;
@@ -21,7 +22,7 @@ function rand(seed: number): number {
   return x - Math.floor(x);
 }
 
-export default function SunScene({ fracOfDay, critical, holding, charge }: Props) {
+export default function SunScene({ fracOfDay, critical, holding, charge, momentum }: Props) {
   const stars = useMemo(
     () =>
       Array.from({ length: 70 }, (_, i) => ({
@@ -39,7 +40,9 @@ export default function SunScene({ fracOfDay, critical, holding, charge }: Props
   // It closes the gap as light runs out, and recoils while you raise the din.
   const wolfR = sunR * 1.05;
   const angle = -0.6; // radians, up-right
-  const pushback = holding ? Math.min(charge, 1) * 26 : 0;
+  // your own hold shoves the wolf back; a roused village shoves it back harder
+  const swell = (Math.max(1, momentum) - 1) * 64;
+  const pushback = (holding ? Math.min(charge, 1) * 26 : 0) + swell;
   const dist = (sunR + wolfR) * (0.16 + 0.86 * fracOfDay) + pushback;
   const wx = CX + dist * Math.cos(angle);
   const wy = CY + dist * Math.sin(angle);
@@ -53,6 +56,24 @@ export default function SunScene({ fracOfDay, critical, holding, charge }: Props
     { x: eyeBase.x - perp.x * wolfR * 0.2, y: eyeBase.y - perp.y * wolfR * 0.2 },
   ];
   const menace = 1 - fracOfDay;
+
+  // As the jaws close, the maw bares teeth facing the sun — the eclipse bite.
+  const facing = Math.atan2(toSun.y, toSun.x);
+  const teeth = menace > 0.45
+    ? Array.from({ length: 7 }, (_, i) => {
+        const spread = 0.9;
+        const a = facing - spread / 2 + (spread * i) / 6;
+        const rim = { x: wx + wolfR * Math.cos(a), y: wy + wolfR * Math.sin(a) };
+        const out = { x: Math.cos(a), y: Math.sin(a) };
+        const tan = { x: -out.y, y: out.x };
+        const len = wolfR * 0.18 * Math.min(1, (menace - 0.45) / 0.4);
+        const half = wolfR * 0.07;
+        return `${rim.x + out.x * len},${rim.y + out.y * len} ` +
+          `${rim.x + tan.x * half},${rim.y + tan.y * half} ` +
+          `${rim.x - tan.x * half},${rim.y - tan.y * half}`;
+      })
+    : [];
+  const glowBoost = (Math.max(1, momentum) - 1) * 0.6;
 
   const inGold = charge >= GOLD_START && charge <= 1.0;
   const overGold = charge > 1.0;
@@ -96,8 +117,15 @@ export default function SunScene({ fracOfDay, critical, holding, charge }: Props
         ))}
       </g>
 
-      {/* sun glow + body */}
-      <circle cx={CX} cy={CY} r={sunR * 2} fill="url(#sun-glow)" opacity={0.35 + 0.45 * fracOfDay} />
+      {/* sun glow + body (a new sun kindles on mount) */}
+      <circle
+        className="sun-kindle"
+        cx={CX}
+        cy={CY}
+        r={sunR * 2}
+        fill="url(#sun-glow)"
+        opacity={Math.min(1, 0.35 + 0.45 * fracOfDay + glowBoost)}
+      />
       <g className={critical ? "sun-body guttering" : "sun-body"} style={{ transformOrigin: `${CX}px ${CY}px` }}>
         <g className="sun-rays" style={{ transformOrigin: `${CX}px ${CY}px` }} opacity={0.25 + 0.55 * fracOfDay}>
           {Array.from({ length: 12 }, (_, i) => {
@@ -140,6 +168,10 @@ export default function SunScene({ fracOfDay, critical, holding, charge }: Props
         {/* maw */}
         <circle cx={wx} cy={wy} r={wolfR} fill="#0b0e1a" />
         <circle cx={wx} cy={wy} r={wolfR} fill="none" stroke="#1c2240" strokeWidth={1.5} opacity={0.8} />
+        {/* teeth — bared as the jaws close */}
+        {teeth.map((pts, i) => (
+          <polygon key={i} points={pts} fill="#e7e3d4" opacity={0.55 + 0.4 * menace} />
+        ))}
         {/* eyes */}
         {eyes.map((e, i) => (
           <g key={i} opacity={0.25 + 0.75 * menace}>

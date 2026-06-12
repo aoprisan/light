@@ -18,6 +18,12 @@ const RESULT_LINES: Record<NoiseResult["quality"], (mins: number) => string> = {
   fizzled: (m) => `The din collapsed — the beast barely stirred. +${m} minutes.`,
 };
 
+function resultLine(result: NoiseResult): string {
+  const base = RESULT_LINES[result.quality](result.mins);
+  if (result.mult > 1) return `${base} The village's rhythm carried it (×${result.mult}).`;
+  return base;
+}
+
 export default function Ritual({ canNoise, holding, charge, cooldownLeft, result, onBegin, onEnd }: Props) {
   const inGold = charge >= GOLD_START && charge <= 1.0;
   const overGold = charge > 1.0;
@@ -26,7 +32,7 @@ export default function Ritual({ canNoise, holding, charge, cooldownLeft, result
     <div className="ritual">
       {result && (
         <div className={`result result-${result.quality}`}>
-          {RESULT_LINES[result.quality](result.mins)}
+          {resultLine(result)}
         </div>
       )}
       {canNoise ? (

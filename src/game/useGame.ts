@@ -1,18 +1,34 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   COOLDOWN_MS, FIZZLE_AT, GOLD_START, GRAVEYARD_MAX, HOLD_MS,
-  INITIAL_LIGHT_MS, LOG_MAX, MAX_LIGHT_MS,
+  INITIAL_LIGHT_MS, LIGHT_DECAY_PER_EPOCH_MS, LOG_MAX, MAX_LIGHT_MS,
+  MIN_INITIAL_LIGHT_MS, MOMENTUM_ROARING_AT, MOMENTUM_ROARING_MULT,
+  MOMENTUM_ROUSED_AT, MOMENTUM_ROUSED_MULT, MOMENTUM_WINDOW_MS,
   VILLAGER_MAX_GAP_MS, VILLAGER_MIN_GAP_MS,
 } from "./constants";
 import { load, onExternalChange, save } from "./storage";
-import { chime, clang, thud } from "./audio";
+import { chime, clang, dawn, thud } from "./audio";
 import type {
-  DevouredSun, NoiseEvent, NoiseResult, Phase, PlayerState, SunState,
+  DevouredSun, Momentum, NoiseEvent, NoiseResult, Phase, PlayerState, SunState,
 } from "./types";
+
+/** Colder embers each forge: Sun I is born with the most light, later suns less. */
+function birthLight(epoch: number): number {
+  return Math.max(MIN_INITIAL_LIGHT_MS, INITIAL_LIGHT_MS - (epoch - 1) * LIGHT_DECAY_PER_EPOCH_MS);
+}
 
 function newSun(epoch: number): SunState {
   const now = Date.now();
-  return { epoch, born: now, deadline: now + INITIAL_LIGHT_MS, noises: 0, log: [] };
+  return { epoch, born: now, deadline: now + birthLight(epoch), noises: 0, log: [] };
+}
+
+/** The village's rhythm, read off the din log — no extra shared state needed. */
+function readMomentum(sun: SunState | null, now: number): Momentum {
+  if (!sun) return { tier: "calm", mult: 1, recent: 0 };
+  const recent = sun.log.filter((e) => now - e.t <= MOMENTUM_WINDOW_MS).length;
+  if (recent >= MOMENTUM_ROARING_AT) return { tier: "roaring", mult: MOMENTUM_ROARING_MULT, recent };
+  if (recent >= MOMENTUM_ROUSED_AT) return { tier: "roused", mult: MOMENTUM_ROUSED_MULT, recent };
+  return { tier: "calm", mult: 1, recent };
 }
 
 function addNoise(sun: SunState, mins: number, who: NoiseEvent["who"]): SunState {
@@ -75,18 +91,30 @@ export function useGame() {
   }, [now, sun, phase]);
 
   // --- simulated villagers (demo stand-in for a real shared backend) ---
+  // Usually a lone beat now and then, but every so often the village rallies —
+  // a quick burst of beats close together, so the momentum swell is visible.
   useEffect(() => {
     if (phase !== "alive") return;
     let id = 0;
+    const beat = () => {
+      const current = sunRef.current;
+      if (document.visibilityState === "visible" && current && current.deadline > Date.now()) {
+        const mins = 2 + Math.floor(Math.random() * 7);
+        const updated = addNoise(current, mins, "villager");
+        save("sun", updated);
+        setSun(updated);
+      }
+    };
     const schedule = () => {
       const gap = VILLAGER_MIN_GAP_MS + Math.random() * (VILLAGER_MAX_GAP_MS - VILLAGER_MIN_GAP_MS);
       id = window.setTimeout(() => {
-        const current = sunRef.current;
-        if (document.visibilityState === "visible" && current && current.deadline > Date.now()) {
-          const mins = 2 + Math.floor(Math.random() * 7);
-          const updated = addNoise(current, mins, "villager");
-          save("sun", updated);
-          setSun(updated);
+        beat();
+        if (Math.random() < 0.35) {
+          // a rally: 1–2 more villagers pile on within the momentum window
+          const extra = 1 + Math.floor(Math.random() * 2);
+          for (let i = 1; i <= extra; i++) {
+            window.setTimeout(beat, i * (6_000 + Math.random() * 9_000));
+          }
         }
         schedule();
       }, gap);
@@ -99,6 +127,7 @@ export function useGame() {
   const fracOfDay = Math.max(0, Math.min(1, remaining / MAX_LIGHT_MS));
   const cooldownLeft = me && me.epoch === sun?.epoch ? me.lastNoise + COOLDOWN_MS - now : 0;
   const canNoise = phase === "alive" && cooldownLeft <= 0;
+  const momentum = readMomentum(phase === "alive" ? sun : null, now);
 
   // --- the ritual: hold to raise the din ---
   const finishHold = useCallback((fizzled: boolean) => {
@@ -111,18 +140,18 @@ export function useGame() {
     chargeRef.current = 0;
     if (c < 0.08) return; // accidental tap, no cost
 
-    let mins: number;
+    let base: number;
     let quality: NoiseResult["quality"];
     if (fizzled || c > FIZZLE_AT) {
-      mins = 3;
+      base = 3;
       quality = "fizzled";
       thud();
     } else if (c >= GOLD_START && c <= 1.0) {
-      mins = 20;
+      base = 20;
       quality = "perfect";
       chime();
     } else {
-      mins = Math.max(4, Math.round(4 + 10 * Math.min(c, 1)));
+      base = Math.max(4, Math.round(4 + 10 * Math.min(c, 1)));
       quality = "steady";
     }
 
@@ -132,6 +161,9 @@ export function useGame() {
       setPhase("devoured");
       return;
     }
+    // a fizzle never catches the swell — only a real scare rides the rhythm
+    const mult = quality === "fizzled" ? 1 : readMomentum(fresh, Date.now()).mult;
+    const mins = Math.round(base * mult);
     const updated = addNoise(fresh, mins, "you");
     save("sun", updated);
     const old = load<PlayerState>("me");
@@ -144,7 +176,7 @@ export function useGame() {
     save("me", meNew);
     setSun(updated);
     setMe(meNew);
-    setResult({ mins, quality });
+    setResult({ mins, quality, mult });
   }, []);
 
   const beginHold = useCallback(() => {
@@ -193,10 +225,11 @@ export function useGame() {
     setSun(next);
     setResult(null);
     setPhase("alive");
+    dawn();
   }, []);
 
   return {
-    sun, graveyard, me, now, phase, holding, charge, result,
+    sun, graveyard, me, now, phase, holding, charge, result, momentum,
     remaining, fracOfDay, cooldownLeft, canNoise,
     beginHold, endHold, forgeNewSun,
   };
