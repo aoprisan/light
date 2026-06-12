@@ -31,7 +31,8 @@ the only way to keep the sun alive is to *wake another villager*.
   the last (down to a floor). The graveyard becomes a saga, not a reset.
 
 The reasoning behind all of this — the critique of the first version and what changed — lives in
-[`DESIGN.md`](DESIGN.md).
+[`DESIGN.md`](DESIGN.md). Prompts for generating the game's art (icon, sun, vârcolac, share card)
+in Gemini "Nano Banana" live in [`ART.md`](ART.md).
 
 ## Stack
 
