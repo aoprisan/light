@@ -17,7 +17,21 @@ the only way to keep the sun alive is to *wake another villager*.
 - **Hold** the button — the village starts banging pots (real synthesized audio).
 - The din rises over 5 seconds. **Release inside the golden arc** for a perfect scare (+20 min).
 - Release early and the beast only flinches (+4–14 min). Hold too long and the din collapses (+3 min).
-- Under one hour of light, the sky bleeds red and the wolf's jaws close around the sun.
+- Under one hour of light, the sky bleeds red and the wolf bares its teeth around the sun.
+
+## The village finds its rhythm
+
+- **Momentum** — when dins land close together (yours *or* other villagers'), the village builds a
+  swell: *roused* (×1.25) then *roaring* (×1.5). Every scare is worth more while the rhythm holds, so
+  rallying people to bang **at the same time** matters, not just at all. The swell fades if the village
+  goes quiet.
+- **Wardens** — the light you win over time earns you a rank you keep: *Villager → Bell-Ringer →
+  Pot-Captain → Dawn-Warden → Keeper of the Light*.
+- **A hungrier pack** — each new sun is forged from colder embers, born with a little less light than
+  the last (down to a floor). The graveyard becomes a saga, not a reset.
+
+The reasoning behind all of this — the critique of the first version and what changed — lives in
+[`DESIGN.md`](DESIGN.md).
 
 ## Stack
 

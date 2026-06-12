@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useGame } from "./game/useGame";
 import { CRITICAL_MS } from "./game/constants";
-import { romanize } from "./game/format";
+import { romanize, wardenTitle } from "./game/format";
 import { isMuted, setMuted } from "./game/audio";
 import SunScene from "./components/SunScene";
 import Countdown from "./components/Countdown";
 import Ritual from "./components/Ritual";
+import MomentumMeter from "./components/Momentum";
 import NoiseLog from "./components/NoiseLog";
 import LongNight from "./components/LongNight";
 import Share from "./components/Share";
@@ -37,8 +38,15 @@ export default function App() {
 
       {g.phase === "alive" ? (
         <main className="main">
-          <SunScene fracOfDay={g.fracOfDay} critical={critical} holding={g.holding} charge={g.charge} />
+          <SunScene
+            fracOfDay={g.fracOfDay}
+            critical={critical}
+            holding={g.holding}
+            charge={g.charge}
+            momentum={g.momentum.mult}
+          />
           <Countdown remaining={g.remaining} critical={critical} />
+          <MomentumMeter momentum={g.momentum} />
           <Ritual
             canNoise={g.canNoise}
             holding={g.holding}
@@ -60,8 +68,8 @@ export default function App() {
 
       {g.me && g.me.timesNoised > 0 && (
         <div className="me-stats">
-          you have driven the beast back {g.me.timesNoised} {g.me.timesNoised === 1 ? "time" : "times"}, winning{" "}
-          {g.me.totalMins} minutes of light
+          <span className="warden">{wardenTitle(g.me.totalMins)}</span> — you have driven the beast back{" "}
+          {g.me.timesNoised} {g.me.timesNoised === 1 ? "time" : "times"}, winning {g.me.totalMins} minutes of light
         </div>
       )}
 

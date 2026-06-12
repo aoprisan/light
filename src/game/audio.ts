@@ -66,6 +66,40 @@ export function chime(): void {
   });
 }
 
+/** A new sun is forged — a bright rising arpeggio, the opposite of a thud. */
+export function dawn(): void {
+  const ac = ensureCtx();
+  if (!ac) return;
+  const t = ac.currentTime;
+  // a warm pad swelling under a climbing major figure
+  const pad = ac.createGain();
+  pad.gain.setValueAtTime(0.0001, t);
+  pad.gain.exponentialRampToValueAtTime(0.05, t + 0.4);
+  pad.gain.exponentialRampToValueAtTime(0.0001, t + 2.2);
+  pad.connect(ac.destination);
+  [196, 261.63].forEach((f) => {
+    const o = ac.createOscillator();
+    o.type = "triangle";
+    o.frequency.value = f;
+    o.connect(pad);
+    o.start(t);
+    o.stop(t + 2.3);
+  });
+  [392, 523.25, 659.25, 783.99].forEach((f, i) => {
+    const o = ac.createOscillator();
+    const g = ac.createGain();
+    o.type = "sine";
+    o.frequency.value = f;
+    const at = t + i * 0.16;
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(0.11, at + 0.03);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + 1.1);
+    o.connect(g).connect(ac.destination);
+    o.start(at);
+    o.stop(at + 1.2);
+  });
+}
+
 /** The din collapses — a dull thud. */
 export function thud(): void {
   const ac = ensureCtx();

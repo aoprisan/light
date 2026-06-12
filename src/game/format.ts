@@ -32,3 +32,20 @@ export function romanize(n: number): string {
   for (const [v, sym] of ROMAN) while (n >= v) { out += sym; n -= v; }
   return out || "I";
 }
+
+// Lifetime minutes of light won → a rank the player keeps. Recognition only,
+// no power: a returning villager has an identity that grows. See DESIGN.md §4.
+const WARDEN_RANKS: Array<[number, string]> = [
+  [1000, "Keeper of the Light"],
+  [360, "Dawn-Warden"],
+  [120, "Pot-Captain"],
+  [30, "Bell-Ringer"],
+  [0, "Villager"],
+];
+
+export function wardenTitle(totalMins: number): string {
+  for (const [threshold, title] of WARDEN_RANKS) {
+    if (totalMins >= threshold) return title;
+  }
+  return "Villager";
+}
