@@ -1,0 +1,14 @@
+LAST LIGHT — ART PROMPT 4: NIGHT-SKY BACKGROUND (full-bleed, behind the UI)
+Self-contained — copy everything below into Gemini 2.5 Flash Image ("Nano Banana").
+
+=== STANDARD ===
+
+STYLE: Eastern-European folk-horror woodcut meets modern game UI. Romanian vârcolaci legend (wolves devouring the sun). Mood: tense, sacred, nocturnal, hand-made. Limited palette ONLY — deep midnight indigo (#07090f, #0e1426), ember orange (#ea7a2e), molten gold (#f4be4f, #ffe6a0), blood red (#c0432e), bone/parchment (#efeada). Subtle film grain and a soft vignette. Textured, slightly engraved linework; no glossy 3D, no lens flare clutter, no text unless asked. High contrast between the warm sun and the cold dark.
+
+A vertical 9:16 phone background. A vast deep-indigo night sky fading from #161d38 at the top to near-black #07090f at the bottom, scattered with faint cold-white stars, a thin band of dust/cloud. Empty negative space in the upper-middle third where a sun will be composited. Heavy film grain, strong vignette darkening all four edges. Atmospheric, quiet, ominous. No sun, no wolf, no text, no foreground objects.
+
+=== LONG-NIGHT VARIANT (game-over screen) ===
+
+STYLE: Eastern-European folk-horror woodcut meets modern game UI. Romanian vârcolaci legend (wolves devouring the sun). Mood: tense, sacred, nocturnal, hand-made. Limited palette ONLY — deep midnight indigo (#07090f, #0e1426), ember orange (#ea7a2e), molten gold (#f4be4f, #ffe6a0), blood red (#c0432e), bone/parchment (#efeada). Subtle film grain and a soft vignette. Textured, slightly engraved linework; no glossy 3D, no lens flare clutter, no text unless asked. High contrast between the warm sun and the cold dark.
+
+A vertical 9:16 phone background. A vast deep-indigo night sky fading from #161d38 at the top to near-black #07090f at the bottom, scattered with faint cold-white stars, a thin band of dust/cloud. Empty negative space in the upper-middle third where a sun will be composited. Heavy film grain, strong vignette darkening all four edges. Atmospheric, quiet, ominous. No sun, no wolf, no text, no foreground objects. Make it darker and colder, almost no stars, a faint blood-red glow low on the horizon, and 6–8 pairs of small glowing red wolf-eyes watching from the darkness at the bottom edge.

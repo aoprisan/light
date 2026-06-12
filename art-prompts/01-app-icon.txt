@@ -1,0 +1,15 @@
+LAST LIGHT — ART PROMPT 1: APP / PWA ICON
+(Replaces public/icons/icon-512.png, icon-192.png, icon-512-maskable.png)
+Self-contained — copy everything below into Gemini 2.5 Flash Image ("Nano Banana").
+
+=== STANDARD ICON ===
+
+STYLE: Eastern-European folk-horror woodcut meets modern game UI. Romanian vârcolaci legend (wolves devouring the sun). Mood: tense, sacred, nocturnal, hand-made. Limited palette ONLY — deep midnight indigo (#07090f, #0e1426), ember orange (#ea7a2e), molten gold (#f4be4f, #ffe6a0), blood red (#c0432e), bone/parchment (#efeada). Subtle film grain and a soft vignette. Textured, slightly engraved linework; no glossy 3D, no lens flare clutter, no text unless asked. High contrast between the warm sun and the cold dark.
+
+A square app icon, 1:1. A single glowing ember-gold sun disc, centered, with a black wolf's-head silhouette (the vârcolac) biting into its upper-right edge — the eclipse bite. The wolf is pure shadow with two small glowing red eyes. The sun has a soft molten-gold corona. Flat #07090f background. Bold, simple, iconic, readable at 48px. No text. Centered with generous padding so it survives a maskable circular crop.
+
+=== MASKABLE VARIANT ===
+
+STYLE: Eastern-European folk-horror woodcut meets modern game UI. Romanian vârcolaci legend (wolves devouring the sun). Mood: tense, sacred, nocturnal, hand-made. Limited palette ONLY — deep midnight indigo (#07090f, #0e1426), ember orange (#ea7a2e), molten gold (#f4be4f, #ffe6a0), blood red (#c0432e), bone/parchment (#efeada). Subtle film grain and a soft vignette. Textured, slightly engraved linework; no glossy 3D, no lens flare clutter, no text unless asked. High contrast between the warm sun and the cold dark.
+
+A square app icon, 1:1. A single glowing ember-gold sun disc, centered, with a black wolf's-head silhouette (the vârcolac) biting into its upper-right edge — the eclipse bite. The wolf is pure shadow with two small glowing red eyes. The sun has a soft molten-gold corona. Flat #07090f background. Bold, simple, iconic, readable at 48px. No text. Centered with generous padding so it survives a maskable circular crop. Keep all art within the central 80% safe zone; fill the outer margin with the same flat #07090f so a circular mask never clips the sun.
